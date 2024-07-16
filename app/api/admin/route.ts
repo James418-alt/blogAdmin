@@ -2,6 +2,7 @@ import myAdminModel from "@/utils/model/adminModel";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import { dbConfig } from "@/utils/dbConfig";
+import path from "path";
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -32,7 +33,8 @@ export const POST = async (req: NextRequest) => {
 
 export const GET = async (req: NextRequest) => {
   try {
-    const getD = await myAdminModel.find();
+    await dbConfig();
+    const getD = await myAdminModel.find().populate({ path: "blogs" });
     return NextResponse.json({
       message: "Users Found",
       status: 200,
