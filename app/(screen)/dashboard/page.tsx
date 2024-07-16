@@ -97,7 +97,7 @@ const page = async () => {
             </Card>
           </CardContent>
         </Card>
-        <Card className="h-[500px] m-10 col-span-1">
+        <Card className="h-[500px] m-3 md:m-10 col-span-1">
           <CardHeader>
             <CardTitle>
               <div className="flex justify-between items-center">
