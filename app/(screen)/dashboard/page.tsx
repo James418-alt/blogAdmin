@@ -14,19 +14,19 @@ import { MdAdd, MdComment, MdEdit } from "react-icons/md";
 
 const page = async () => {
   //blog-admin-rho-swart.vercel.app/
-  //   const url = "https://blog-admin-rho-swart.vercel.app/api/admin";
-  const url = "";
-  //   const res = await fetch(url, { cache: "no-cache" });
-  //   const data = await res.json();
-  //   console.log(data);
+  const url = "https://blog-admin-rho-swart.vercel.app/api/admin";
+
+  const res = await fetch(url, { cache: "no-cache" });
+  const data = await res.json();
+  console.log(data);
 
   return (
     <div>
-      <h1 className="font-semibold text-[18px] text-gray-500 mx-10 my-2">
+      <h1 className="font-semibold mx-3 text-[18px] text-gray-500 md:mx-10 my-2">
         Welcome Back Gomenti!
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2">
-        <Card className="col-span-1 m-10">
+        <Card className="col-span-1 m-3 md:m-10">
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 mt-7 gap-3">
               <div className="col-span-1">
