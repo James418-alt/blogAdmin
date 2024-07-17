@@ -6,11 +6,9 @@ import { MdCancel, MdImage } from "react-icons/md";
 import Head from "./head";
 
 const page = async () => {
-  const url = "http://localhost:3000/api/admin";
-  const res = await fetch(url, { cache: "no-cache" });
+  const url = "https://blog-admin-rho-swart.vercel.app/api/admin";
+  const res = await fetch(url, { method: "GET", cache: "no-cache" });
   const data = await res.json();
-
-  console.log();
 
   const formAction = async (formData: FormData) => {
     "use server";
@@ -20,7 +18,7 @@ const page = async () => {
     const adminID = formData.get("adminID");
     console.log(adminID);
 
-    const url = `http://localhost:3000/api/blog/${adminID}`;
+    const urls = `https://blog-admin-rho-swart.vercel.app/api/blog/${adminID}`;
 
     const file = await image.arrayBuffer();
     const buffer = new Uint8Array(file);
@@ -36,7 +34,7 @@ const page = async () => {
         })
         .end(buffer);
     });
-    await fetch(url, {
+    await fetch(urls, {
       method: "POST",
       body: JSON.stringify({ title, desc, coverImage: secure_url }),
     }).then(() => {
