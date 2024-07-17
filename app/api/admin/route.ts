@@ -34,7 +34,7 @@ export const POST = async (req: NextRequest) => {
 export const GET = async (req: NextRequest) => {
   try {
     await dbConfig();
-    const getD = await myAdminModel.find().populate({ path: "blogs" });
+    const getD = await myAdminModel.find();
     return NextResponse.json({
       message: "Users Found",
       status: 200,

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { dbConfig } from "@/utils/dbConfig";
+import { ClerkProvider, SignedIn } from "@clerk/nextjs";
+import Header from "./Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,8 +19,18 @@ export default async function RootLayout({
 }>) {
   await dbConfig();
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <div>
+            <SignedIn>
+              <Header />
+            </SignedIn>
+
+            <div>{children}</div>
+          </div>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

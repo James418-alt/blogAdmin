@@ -8,28 +8,6 @@ import streamifier from "streamifier";
 export const POST = async (req: NextRequest, { params }: any) => {
   try {
     await dbConfig();
-
-    let streamUpload = (req: any) => {
-      return new Promise((resolve, reject) => {
-        let stream = cloudinary.uploader.upload_stream((error, result) => {
-          if (result) {
-            resolve(result);
-          } else {
-            reject(error);
-          }
-        });
-
-        streamifier.createReadStream(req.file.buffer).pipe(stream);
-      });
-    };
-    const uploads = async (req: any) => {
-      let result = await streamUpload(req);
-      return result;
-    };
-    const { secure_url }: any = await uploads(req);
-
-    console.log(secure_url);
-
     const { title, desc, coverImage } = await req.json();
     const { adminID } = await params;
     const admin = await myAdminModel.findById(adminID);
@@ -49,6 +27,27 @@ export const POST = async (req: NextRequest, { params }: any) => {
   } catch (error: any) {
     return NextResponse.json({
       message: "Error OCcured",
+      status: 400,
+      error: error.message,
+    });
+  }
+};
+
+export const GET = async (req: NextRequest, { params }: any) => {
+  try {
+    await dbConfig();
+    const { adminID } = await params;
+    const getD = await myAdminModel
+      .findById(adminID)
+      .populate({ path: "blogs", options: { createdAt: -1 } });
+    return NextResponse.json({
+      message: "All Blogs",
+      data: getD,
+      status: 200,
+    });
+  } catch (error: any) {
+    return NextResponse.json({
+      message: "Error Occured",
       status: 400,
       error: error.message,
     });
