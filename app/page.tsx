@@ -15,11 +15,11 @@ import { MdAdd, MdComment, MdEdit } from "react-icons/md";
 
 const page = async () => {
   //blog-admin-rho-swart.vercel.app/
-  const url = "http://localhost:3000/api/admin";
+  const url = "https://blog-admin-rho-swart.vercel.app/api/admin";
   const res = await fetch(url, { cache: "no-cache" });
   const data = await res.json();
 
-  const url2 = `http://localhost:3000/api/blog/${data.data[0]._id}`;
+  const url2 = `https://blog-admin-rho-swart.vercel.app/api/blog/${data.data[0]._id}`;
   const res2 = await fetch(url2, { cache: "no-cache" });
   const data2 = await res2.json();
   console.log(data2.data);
