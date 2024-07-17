@@ -22,15 +22,12 @@ const page = async () => {
   const url2 = `https://blog-admin-rho-swart.vercel.app/api/blog/${data.data[0]._id}`;
   const res2 = await fetch(url2, { cache: "no-cache" });
   const data2 = await res2.json();
-  console.log(data2.data);
+  // console.log(data2.data);
 
   return (
     <div>
-      <h1 className="font-semibold mx-3 text-[18px] text-gray-500 md:mx-10 my-2">
-        Welcome Back Gomenti!
-      </h1>
       <div className="grid grid-cols-1 md:grid-cols-2">
-        <Card className="col-span-1 m-3 md:m-10">
+        <Card className="col-span-1 m-3 md:m-10 mt-5">
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 mt-7 gap-3">
               <div className="col-span-1">
@@ -112,42 +109,44 @@ const page = async () => {
             </CardTitle>
             <CardDescription>
               <div className="flex flex-col gap-3">
-                {data2.data.blogs.map((el: any) => (
-                  <div
-                    key={el._id}
-                    className="flex md:gap-4 items-center mt-2 "
-                  >
-                    <div>
-                      <img
-                        className="w-[100px] h-[70px] hidden md:block"
-                        src={el.coverImage}
-                        alt="#"
-                      />
-                    </div>
-                    <div className="cursor-default">
+                {data2.data.blogs
+                  .map((el: any) => (
+                    <div
+                      key={el._id}
+                      className="flex md:gap-4 items-center mt-2 border md:p-0 md:border-none p-1 "
+                    >
                       <div>
-                        <h1 className="font-semibold text-[13px] text-gray-600">
-                          {el.title}
-                        </h1>
+                        <img
+                          className="w-[100px] h-[70px] hidden md:block"
+                          src={el.coverImage}
+                          alt="#"
+                        />
                       </div>
-                      <div className="flex w-[200px] justify-between items-center mt-1">
-                        <div className="flex gap-1 items-center">
-                          <MdComment />
-                          <p className="font-normal text-gray-400 text-[12px]">
-                            {el.comments.length}{" "}
-                            {el.comments.length <= 1 ? "Comment" : "Comments"}
-                          </p>
+                      <div className="cursor-default">
+                        <div>
+                          <h1 className="font-semibold text-[13px] text-gray-600">
+                            {el.title}
+                          </h1>
                         </div>
-                        <div className="flex gap-1 items-center">
-                          <MdEdit />
-                          <p className="font-normal text-gray-400 text-[12px]">
-                            Edit
-                          </p>
+                        <div className="flex w-[300px] md:w-[200px] justify-between items-center mt-1">
+                          <div className="flex gap-1 items-center">
+                            <MdComment />
+                            <p className="font-normal text-gray-400 text-[12px]">
+                              {el.comments.length}{" "}
+                              {el.comments.length <= 1 ? "Comment" : "Comments"}
+                            </p>
+                          </div>
+                          <div className="flex gap-1 items-center">
+                            <MdEdit />
+                            <p className="font-normal text-gray-400 text-[12px]">
+                              Edit
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))
+                  .reverse()}
               </div>
             </CardDescription>
           </CardHeader>

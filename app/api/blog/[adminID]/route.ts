@@ -39,7 +39,7 @@ export const GET = async (req: NextRequest, { params }: any) => {
     const { adminID } = await params;
     const getD = await myAdminModel
       .findById(adminID)
-      .populate({ path: "blogs", options: { createdAt: -1 } });
+      .populate({ path: "blogs" });
     return NextResponse.json({
       message: "All Blogs",
       data: getD,

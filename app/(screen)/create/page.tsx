@@ -16,7 +16,7 @@ const page = async () => {
     const desc = formData.get("desc");
     const image = formData.get("image") as File;
     const adminID = formData.get("adminID");
-    console.log(adminID);
+    // console.log(adminID);
 
     const urls = `https://blog-admin-rho-swart.vercel.app/api/blog/${adminID}`;
 
@@ -44,7 +44,7 @@ const page = async () => {
   };
   return (
     <div className="flex items-center justify-center mt-10">
-      <div className="w-[400px] min-h-[300px] border p-2 shadow-md">
+      <div className="md:w-[400px] w-[300px] min-h-[300px] border p-2 shadow-md">
         <Head />
         <form action={formAction}>
           <div className="flex flex-col gap-4">
