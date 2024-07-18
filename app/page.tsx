@@ -17,7 +17,7 @@ import { redirect } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { MdAdd, MdComment, MdEdit } from "react-icons/md";
 
-const page = () => {
+const Page = () => {
   const [data, setData]: any = useState({});
   const [data2, setData2]: any = useState({});
   const { isLoaded, isSignedIn, user } = useUser();
@@ -214,4 +214,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
