@@ -4,6 +4,7 @@ import "./globals.css";
 import { dbConfig } from "@/utils/dbConfig";
 import { ClerkProvider, SignedIn } from "@clerk/nextjs";
 import Header from "./Header";
+import { GlobalContext } from "./globalContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +28,9 @@ export default async function RootLayout({
               <Header />
             </SignedIn>
 
-            <div>{children}</div>
+            <div>
+              <GlobalContext>{children}</GlobalContext>
+            </div>
           </div>
         </body>
       </html>

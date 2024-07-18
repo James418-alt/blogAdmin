@@ -17,7 +17,7 @@ export const POST = async (req: NextRequest, { params }: any) => {
       coverImage,
       user: admin,
     });
-    admin.blogs.push(getD);
+    admin.blogs.push(getD._id);
     admin.save();
     return NextResponse.json({
       message: "Blog Created",

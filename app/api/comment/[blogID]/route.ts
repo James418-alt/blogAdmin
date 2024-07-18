@@ -10,7 +10,7 @@ export const POST = async (req: NextRequest, { params }: any) => {
     const { blogID } = await params;
     const blog = await myBlogModel.findById(blogID);
     const getD = await myComment.create({ comment, blog });
-    blog.comments.push(getD);
+    blog.comments.push(getD._id);
     blog.save();
     return NextResponse.json({
       message: "Comment created",

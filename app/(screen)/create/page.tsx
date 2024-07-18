@@ -4,9 +4,13 @@ import { redirect } from "next/navigation";
 import React from "react";
 import { MdCancel, MdImage } from "react-icons/md";
 import Head from "./head";
+import { currentUser } from "@clerk/nextjs/server";
 
 const page = async () => {
-  const url = "https://blog-admin-rho-swart.vercel.app/api/admin";
+  const user = await currentUser();
+  const Id = user?.publicMetadata.userId;
+
+  const url = `http://localhost:3000/api/admin/${Id}`;
   const res = await fetch(url, { method: "GET", cache: "no-cache" });
   const data = await res.json();
 
@@ -18,7 +22,7 @@ const page = async () => {
     const adminID = formData.get("adminID");
     // console.log(adminID);
 
-    const urls = `https://blog-admin-rho-swart.vercel.app/api/blog/${adminID}`;
+    const urls = `http://localhost:3000/api/blog/${adminID}`;
 
     const file = await image.arrayBuffer();
     const buffer = new Uint8Array(file);
@@ -78,7 +82,7 @@ const page = async () => {
               <input
                 name="adminID"
                 type="text"
-                value={data.data[0]._id}
+                value={data.data._id}
                 className="hidden"
               />
             </div>
