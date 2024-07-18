@@ -10,7 +10,7 @@ const page = async () => {
   const user = await currentUser();
   const Id = user?.publicMetadata.userId;
 
-  const url = `http://localhost:3000/api/admin/${Id}`;
+  const url = `https://blog-admin-rho-swart.vercel.app/api/admin/${Id}`;
   const res = await fetch(url, { method: "GET", cache: "no-cache" });
   const data = await res.json();
 
@@ -22,7 +22,7 @@ const page = async () => {
     const adminID = formData.get("adminID");
     // console.log(adminID);
 
-    const urls = `http://localhost:3000/api/blog/${adminID}`;
+    const urls = `https://blog-admin-rho-swart.vercel.app/api/blog/${adminID}`;
 
     const file = await image.arrayBuffer();
     const buffer = new Uint8Array(file);

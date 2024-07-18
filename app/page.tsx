@@ -25,8 +25,7 @@ const page = () => {
   const userId = user?.publicMetadata?.userId!;
   const [num, setNum] = useState(5);
 
-  const url = `http://localhost:3000/api/admin/${userId}`;
-  const url2 = `http://localhost:3000/api/blog/${userId}`;
+  const url = `https://blog-admin-rho-swart.vercel.app/api/admin/${userId}`;
 
   const getD = async () => {
     return await fetch(url, {
@@ -38,10 +37,13 @@ const page = () => {
   };
 
   const getDs = async () => {
-    return await fetch(`http://localhost:3000/api/blog/${userId}`, {
-      method: "GET",
-      cache: "no-cache",
-    }).then((res) => {
+    return await fetch(
+      `https://blog-admin-rho-swart.vercel.app/api/blog/${userId}`,
+      {
+        method: "GET",
+        cache: "no-cache",
+      }
+    ).then((res) => {
       return res.json();
     });
   };
